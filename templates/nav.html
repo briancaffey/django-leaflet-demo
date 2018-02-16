@@ -1,0 +1,25 @@
+<nav class="navbar navbar-custom navbar-expand-sm bg-light">
+    <div class="container">
+        <a class="navbar-brand" id="id_home" href="{% url 'books:all' %}">Djangoapp</a>
+        <!-- Links -->
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item">
+                <a class="nav-link" id="id_all" href="{% url 'books:new' %}">Books</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="id_new" href="{% url 'books:new' %}">
+                    Add
+                </a>
+            </li>
+            {% if request.user.is_authenticated %}
+                <li class="nav-item pull-right">
+                    <a class="nav-link pull-right" id="id_logout" href="{% url 'accounts:logout' %}">Logout</a>
+                </li>
+            {% else %}
+                <li class="nav-item pull-right">
+                    <a class="nav-link pull-right" id="id_login" href="{% url 'accounts:login' %}">Login</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

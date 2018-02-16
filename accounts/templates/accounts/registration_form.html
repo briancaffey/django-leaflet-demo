@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block head_extra %}
+{{ form.media }}
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+{% include 'nav.html' %}
+<div class="container">
+    <div class="col-md-6 col-md-offset-3">
+    <h1 class="login-center">Register</h1>
+        <form method="POST" action=".">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <div class="login-center"><input class="btn btn-success" type="submit" value="Register" /></div><br />or <a href="{% url 'accounts:login' %}">login to an existing account</a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

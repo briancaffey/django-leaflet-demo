@@ -1,0 +1,23 @@
+/* body {
+    padding-top: 20px;
+} */
+
+h1 {
+    color:red
+}
+
+.navbar-custom {
+  background-color: #cad1e0;
+}
+
+.button-wrapper .btn {
+  margin-bottom:5px;
+}
+
+.form-control {
+  margin-bottom:5px;
+}
+
+.pull-right {
+  float: right !important;
+}

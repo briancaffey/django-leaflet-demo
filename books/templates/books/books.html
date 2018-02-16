@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}Books | {{ block.super}}{% endblock %}
+{% block head_extra %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock head_extra %}
+{% block content %}
+
+{% include 'nav.html' %}
+
+<div class="container">
+    <h1>Books</h1>
+    <p>Here are all available books</p>
+    <ol>
+    {% for book in books%}
+        <li>
+            {{ book.title }}
+        </li>
+    {% endfor %}
+    </ol>
+
+    <hr>
+
+</div>
+
+
+
+{% endblock %}

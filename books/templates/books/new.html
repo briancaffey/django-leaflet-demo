@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}Add a New Book | {{ block.super}}{% endblock %}
+{% block head_extra %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock head_extra %}
+{% block content %}
+
+{% include 'nav.html' %}
+
+<div class="container">
+    <h1>New Book</h1>
+    <p>Add a new book here:</p>
+    <form method="POST" action="{% url 'books:new' %}">
+        {% csrf_token %}
+        <input type="text" name="title" class="form-control" placeholder="enter book title"/>
+        <input type="submit" class="btn btn-success"></input>
+    </form>
+</div>
+
+{% endblock %}
