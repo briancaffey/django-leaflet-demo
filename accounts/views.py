@@ -13,10 +13,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import UserLoginForm, UserRegistrationForm
 
-
-
 # Create your views here.
-
 
 def login_view(request):
 
@@ -48,10 +45,10 @@ def register_view(request):
 		new_user = authenticate(username=user.username, password=password)
 		login(request, new_user)
 		messages.success(request, 'Thanks for registering, ' + str(request.user.username) + '!')
-		return redirect('posts:list')
+		return redirect('books:all')
 	context = {
 		'form':form,
-	}
+		}
 	return render(request, 'accounts/registration_form.html', context)
 
 @login_required

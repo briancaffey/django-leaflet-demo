@@ -15,8 +15,13 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     {% endblock %}
   </head>
-  <body>
-    {% block content %}{% endblock%}
+  <body class="Site">
+    {% block nav %}{% include 'nav.html' %}{% endblock nav %}
+
+    
+        <div class="Site-content">{% block content %}{% endblock%}</div>
+    
+    {% block footer %}{% include 'footer.html' %}{% endblock footer %}
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

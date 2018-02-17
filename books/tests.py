@@ -15,5 +15,3 @@ class SimpleTest(TestCase):
         self.assertEqual(len(all_books),1)
         first_book = all_books.first()
         self.assertIn("Test Book", first_book.title)
-
-    def test_
