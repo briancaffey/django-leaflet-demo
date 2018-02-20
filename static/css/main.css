@@ -44,5 +44,7 @@ h1 {
 
 #mapid { 
   height: 280px; 
-  width: auto
+  width: auto;
+  margin-bottom:5px;
+
 }
