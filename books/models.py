@@ -29,4 +29,4 @@ class Book(models.Model):
         return self.title
     
     def get_absolute_url(self):
-        return f'/books/{self.id}/{self.slug}/'
+        return '/books/{}/{}/'.format(self.id, self.slug)
