@@ -1,16 +1,8 @@
 from django import forms
 from .models import Book
+
 import datetime
 
-YEAR_CHOICES = tuple([2000+i for i in range(22)])
-
-CHOICES=[('select1','select 1'),
-         ('select2','select 2')]
-
-TRUEFALSE = (
-    ('True','True'),
-    ('False', 'False'),
-)
 
 class QueryForm(forms.Form):
 
@@ -44,34 +36,11 @@ class QueryForm(forms.Form):
             attrs={
                 'class':'form-control',
                 'placeholder':'space-separated words matching title, synopsis, website or tags'
-            }
-        )
-    )
+            }))
 
+    # status = forms.BooleanField(
+    #     required=False)
 
-
-    status = forms.BooleanField(
-        required=False,
-
-        # widget=forms.RadioSelect(
-        #     attrs={
-        #         'class':'form-control'
-        #     }
-        #     )
-        )
-
-    # status = forms.ChoiceField(
-    #     choices=TRUEFALSE,
-    #     required=False,
-    #     widget=forms.RadioSelect(
-    #         attrs={}
-    #     ))
-    
-    class Meta:
-        field=[
-            # 'boolean',
-            'status',
-        ]
 
 
 

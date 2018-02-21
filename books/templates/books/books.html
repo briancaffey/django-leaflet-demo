@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="{% static 'css/map-style.css' %}">
 <link rel="stylesheet" href="{% static 'css/leaflet-search.css' %}">
 
-
 <!-- Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
 integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
@@ -41,15 +40,19 @@ crossorigin=""></script>
     <div class="container">
         <br />
             <div class="card" style="width: auto;">
-            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
             <div class="card-body">
-                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                 <div class="row">
                     <div class="col-md-6">
                 <h3>
-                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Filter Books
-                    </a>
+
+                    <form action="{% url 'books:csv' %}">
+
+                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Filter Books
+                        </a>
+                        <input type="submit" class="btn btn-info" form="id_query_form" formaction="{% url 'books:csv' %}" value="Export CSV">
+                        <input type="submit" class="btn btn-default" form="id_query_form" formaction="{% url 'books:xls' %}" value="Export XLS">
+                    </form>
                 </h3>
                 </div>
                 <div style="text-align: right" class="col-md-6">
@@ -57,7 +60,6 @@ crossorigin=""></script>
                 </div>
                 </div>
 
-                
                     <div class="collapse" id="collapseExample">
                         <hr>
                         <p class="">Use this form to filter books by different attributes</p>
@@ -65,12 +67,6 @@ crossorigin=""></script>
                         <p class="">
                         
                             <form method="get" action="." id="id_query_form">
-                                <p>Selection: {{ form.status }} 
-                                    <!-- {% for choice in form.status_ %}
-                                        {{ choice.choice_label }}
-                                        <span class="checkbox-inline">{{ choice.tag }}</span>
-                                    {% endfor %} -->
-                                </p>
                                 <p>
                                     {{ form.keywords }}
                                 </p>
@@ -154,13 +150,6 @@ crossorigin=""></script>
             popupAnchor:  [0, -30] // point from which the popup should open relative to the iconAnchor
             });
 
-        var circle = L.circle([51.508, -0.11], {
-            color: 'red',
-            fillColor: '#f03',
-            fillOpacity: 0.5,
-            radius: 500
-        }).addTo(mymap);
-
         var markersLayer = new L.LayerGroup();	//layer contain searched elements
         
         mymap.addLayer(markersLayer);
@@ -179,15 +168,16 @@ crossorigin=""></script>
             for(i in data) {
             var title = data[i].title,	//value searched
                 loc = data[i].loc,		//position found
+                url = data[i].url,
                 marker = new L.Marker(new L.latLng(loc), {title: title, icon: bookIcon} );//se property searched
-            marker.bindPopup('<a href="'+ title + '">' + title + '</a>' );
+            marker.bindPopup('<p><a href="'+ url + '">' + title + '</a></p>');
             markersLayer.addLayer(marker);
             }
         }
 
-        var queryDict = {};
-        location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]})
-        console.log(queryDict);
+        // var queryDict = {};
+        // location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]})
+        // console.log(queryDict);
 
 
         // use context variable instead of making AJAX call 
@@ -196,21 +186,6 @@ crossorigin=""></script>
         var new_lon = map_books[0].loc[1]
         mymap.setView([0, 0], 2);
         populateMap(map_books)
-
-        // $.ajax({
-        //     type: "GET",
-        //     url: "/books/map_data",
-        //     success: function(data){
-        //         var books = data["data"]
-        //         var new_lat = books[0].loc[0]
-        //         var new_lon = books[0].loc[1]
-        //         mymap.setView([0, 0], 2);
-        //         populateMap(books)
-        //     }
-        //     });
-        
-
-
 
     </script>
     <hr>

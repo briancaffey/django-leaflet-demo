@@ -3,14 +3,18 @@ import faker
 import random
 import factory
 from books.models import Book
-from faker import Faker
-fake = Faker()
+
 
 class BookFactory(factory.Factory):
     
     class Meta:
-        model = Book
+        model = 'books.Book'
 
+
+    import factory
+    import random
+    from faker import Faker
+    fake = Faker()
     title = factory.Faker('sentence', nb_words=4)
     lon = random.uniform(-180,180)
     lat = random.uniform(-90,90)
@@ -18,6 +22,8 @@ class BookFactory(factory.Factory):
     publish_date = fake.date_time_between(start_date="-10y", end_date="now", tzinfo=None)
     website = fake.url(schemes=None)
 
-b = BookFactory.build()
+    def __str__(self):
+        return self.title
 
-print(b)
+# b = BookFactory()
+# print(b)

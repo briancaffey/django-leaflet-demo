@@ -62,6 +62,7 @@ crossorigin=""></script>
         </div>
 
         <div id="mapid"></div>
+        
         <script>
         var mymap = new L.Map('mapid', {zoom: 2, center: new L.latLng([40,13]) });	//set center from first location
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -80,7 +81,6 @@ crossorigin=""></script>
             markersLayer.clearLayers();
             
             var marker = new L.marker({'lat':lat,'lng':lng});
-            console.log(marker);
             markersLayer.addLayer(marker);
         }
 
@@ -111,14 +111,12 @@ crossorigin=""></script>
 
 
         $( "#id_lon" ).keyup(function() {
-            console.log("changing lon");
             var lon = $("#id_lon").val()
             var lat = $("#id_lat").val()
             addMarkerOnInputChange(lat,lon)
         });
 
         $( "#id_lat" ).keyup(function() {
-            console.log("changing lat");
             var lon = $("#id_lon").val()
             var lat = $("#id_lat").val()
             addMarkerOnInputChange(lat,lon)

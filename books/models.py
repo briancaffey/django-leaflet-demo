@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 
 # Create your models here.
 
@@ -20,8 +21,12 @@ class Book(models.Model):
     #status - published / in progress
     #
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Book, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.title
     
     def get_absolute_url(self):
-        return f'/books/{self.id}'
+        return f'/books/{self.id}/{self.slug}/'
