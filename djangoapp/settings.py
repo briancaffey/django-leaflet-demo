@@ -126,4 +126,4 @@ STATICFILES_DIRS = [
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = '/opt/static/'
+STATIC_ROOT = '/opt/djangoapp/static/'
