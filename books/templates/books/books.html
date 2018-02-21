@@ -175,11 +175,6 @@ crossorigin=""></script>
             }
         }
 
-        // var queryDict = {};
-        // location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]})
-        // console.log(queryDict);
-
-
         // use context variable instead of making AJAX call 
         var map_books =  JSON.parse('{{ map_books }}')
         var new_lat = map_books[0].loc[0]
@@ -217,7 +212,7 @@ crossorigin=""></script>
                 {% endfor %}
             </tbody>
         </table>
-
+        <br />
         <script>
             $(document).ready(function() {
                 $('#book-table').DataTable({
@@ -238,4 +233,3 @@ crossorigin=""></script>
 
 {% endblock %}
 
-{% block footer %}{% endblock %}

@@ -3,7 +3,6 @@ from functools import reduce
 from ..models import Book
 import datetime
 
-
 def filter_books(books, paramDict):
     # paramDict = request.GET
     params = paramDict.keys()

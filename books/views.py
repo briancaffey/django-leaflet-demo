@@ -58,7 +58,6 @@ def export_filtered_books_csv(request):
 
     return response
 
-
 def export_filtered_books_xls(request):
     response = HttpResponse(content_type='application/ms-excel')
     response['Content-Disposition'] = 'attachment; filename="books.xls"'

@@ -2,11 +2,11 @@
 
 - Filter data ✓
 - Q lookups ✓
-- Export data buttons
+- Export data buttons ✓
 - User pages 
-- Author model
-- Categories
-- DRF
+- Author model 
+- Categories 
+- DRF 
 - Admin pages
 - Record approval
 - PEP8 ✓
@@ -78,6 +78,8 @@ def all_books(request):
             books = books.filter(filters)
 [...]
 ```
+
+If we have to search for keywords over many fields, it might make sense to search a single field that stores concatenated values of each field we want to store. To accomplish this, we could add to the 
 
 ## Inline Radio Buttons
 

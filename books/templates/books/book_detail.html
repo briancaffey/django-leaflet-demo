@@ -30,10 +30,27 @@ crossorigin=""></script>
 {% block content %}
 
 <div class="container">
-    <h1>{{ book.title }}<small size=".5em" style="color:black">  {{ book.pages }} pages</small></h1>
-    <p>{{ book.synopsis | safe | linebreaks }}</p>
-    <div id="mapid"></div>
+    <br/>
+    <div class="row">
+        <div class="col-md-4">
+            <img class="img-responsive" src="{% static 'images/book.jpg' %}"/>
+        </div>
+        <div class="col-md-8">
+                <h1>{{ book.title }}<small size=".5em" style="color:black">  {{ book.pages }} pages</small></h1>
+                <p>{{ book.synopsis | safe | linebreaks }}</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-8">
+            Info
+        </div>
+        <div  class="col-md-4">
+            <div id="mapid"></div>
+        </div>
+    </div>
 
+    <br />
     <script>
         var mymap = new L.Map('mapid', {zoom: 9, center: new L.latLng([40,13]) });	//set center from first location
     
@@ -79,3 +96,4 @@ crossorigin=""></script>
 </div>
 
 {% endblock %}
+
