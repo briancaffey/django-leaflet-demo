@@ -13,13 +13,7 @@ class Book(models.Model):
     synopsis = models.TextField()
     slug = models.SlugField(max_length=200)
     status = models.BooleanField(default=True)
-    #author - model
-    #category - m2m?
-    #website - URLField
-    #sinopsis - Text area
-    #slug field - book title
-    #status - published / in progress
-    #
+    authors = models.ManyToManyField('authors.Author')  
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)

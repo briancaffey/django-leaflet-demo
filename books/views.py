@@ -1,14 +1,19 @@
+from bokeh.plotting import figure, output_file, show 
+from bokeh.embed import components
+
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models import Sum
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, render_to_response
 from django.utils.safestring import mark_safe
 from django.utils.html import escapejs
 from functools import reduce
 from .forms import BookForm, QueryForm
 from .models import Book
 from .utils.filter import filter_books
+
+
 
 import csv
 import datetime
@@ -125,3 +130,25 @@ def new_book(request):
             book.save()
             return redirect('books:all')
     return render(request, 'books/new.html', {'form':form})
+
+
+
+
+def viz(request):
+    x= [1,3,5,7,9,11,13]
+    y= [1,2,3,4,5,6,7]
+    title = 'y = f(x)'
+
+    plot = figure(title= title , 
+        x_axis_label= 'X-Axis', 
+        y_axis_label= 'Y-Axis', 
+        plot_width =400,
+        plot_height =400)
+
+    plot.line(x, y, legend= 'f(x)', line_width = 2)
+    #Store components 
+    script, div = components(plot)
+
+    #Feed them to the Django template.
+    return render_to_response( 'books/viz.html',
+            {'script' : script , 'div' : div} )

@@ -109,3 +109,12 @@ $.ajax({
     });
 ```
 
+## Deploying on Digital Ocean
+
+Here's an overview of how to deploy this app to Ditial Ocean.
+
+- Create a Droplet with Ubunutu 14.04
+- Generate SSH Key
+- Login via SSH
+
+

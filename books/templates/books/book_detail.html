@@ -37,6 +37,7 @@ crossorigin=""></script>
         </div>
         <div class="col-md-8">
                 <h1>{{ book.title }}<small size=".5em" style="color:black">  {{ book.pages }} pages</small></h1>
+                <h3>Authors: {% for author in book.authors.all %}<a href="{% url 'authors:author_detail' id=author.id %}">{{ author.full_name }}</a>{% endfor %}</h3>
                 <p>{{ book.synopsis | safe | linebreaks }}</p>
         </div>
     </div>

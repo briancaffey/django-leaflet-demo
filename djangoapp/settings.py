@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'books',
     'crispy_forms',
     'accounts',
+    'authors',
 ]
 
 MIDDLEWARE = [
@@ -126,4 +127,4 @@ STATICFILES_DIRS = [
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = '/opt/djangoapp/static/'
+STATIC_ROOT = '/home/brian/static'
