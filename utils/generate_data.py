@@ -1,14 +1,8 @@
 from books.models import Book
 from django.contrib.auth.models import User
 import datetime
-import faker
-import random
-from faker import Faker
-fake = Faker()
 
 
-import factory
-from books.models import Book
 
 data = [
     {'title':'My first book', 
