@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/briancaffey/django-leaflet-demo.svg?branch=master)](https://travis-ci.org/briancaffey/django-leaflet-demo)
+
 ## Todo
 
 - Filter data ✓
