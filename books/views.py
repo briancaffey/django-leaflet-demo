@@ -12,12 +12,14 @@ from functools import reduce
 from .forms import BookForm, QueryForm
 from .models import Book
 from .utils.filter import filter_books
+from .utils.nearby import distance
 
 
 
 import csv
 import datetime
 import json
+import operator
 import xlwt
 # Create your views here.
 
@@ -96,13 +98,35 @@ def export_filtered_books_xls(request):
     return response
 
 def book_detail(request, id, slug):
+
     book = Book.objects.get(id=id, slug=slug)
+
+    b_coords = (book.lon, book.lat)
+
+    all_books = Book.objects.all()
+    
+    coords = [((b.lat, b.lon),b) for b in all_books]
+
+    distance_dict = {}
+    for c in coords:
+
+        distance_dict[c[0]]=(distance(c[0],b_coords),c)
+
+    
+
+    sorted_nearby = sorted(distance_dict.items(), key=operator.itemgetter(1), reverse=False)[2]
+
+    
+    
+    # f = itemgetter(2), the call f(r) returns r[2]
+
     map_book = [{'loc':[float(book.lon), float(book.lat)], 
                  'title':book.title, 
                  'url':book.get_absolute_url()}]
     context = {
         'book':book, 
-        'map_book':mark_safe(escapejs(json.dumps(map_book)))
+        'map_book':mark_safe(escapejs(json.dumps(map_book))), 
+        'sorted_nearby':sorted_nearby,
     }
     return render(request, 'books/book_detail.html', context)
 

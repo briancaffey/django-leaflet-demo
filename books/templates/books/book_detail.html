@@ -44,7 +44,13 @@ crossorigin=""></script>
     <hr>
     <div class="row">
         <div class="col-md-8">
+            
+            {{ map_book }}
+            <br/>
             Info
+            {% for b in sorted_nearby %}
+                {{ b }}
+            {% endfor %}
         </div>
         <div  class="col-md-4">
             <div id="mapid"></div>
