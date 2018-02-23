@@ -4,3 +4,4 @@ venv
 geckodriver.log
 do
 do*
+djangoapp/settings/local.py

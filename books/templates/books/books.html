@@ -30,6 +30,11 @@ crossorigin=""></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
 
+<link rel="stylesheet" href="{% static '/dist/MarkerCluster.css' %}" />
+<link rel="stylesheet" href="{% static '/dist/MarkerCluster.Default.css' %}" />
+<script src="{% static '/dist/leaflet.markercluster-src.js' %}" /></script>
+
+
 {% endblock head_extra %}
 
 {% block content %}
@@ -141,6 +146,8 @@ crossorigin=""></script>
         }).addTo(mymap);
 
 
+        // var markers = L.markerClusterGroup();
+
         var bookIcon = L.icon({
             iconUrl: '/static/images/marker-icon.png',
             iconSize:     [35, 35], // size of the icon
@@ -150,8 +157,11 @@ crossorigin=""></script>
             popupAnchor:  [0, -30] // point from which the popup should open relative to the iconAnchor
             });
 
-        var markersLayer = new L.LayerGroup();	//layer contain searched elements
+        // var markersLayer = new L.LayerGroup();	//layer contain searched elements
         
+        var markersLayer = L.markerClusterGroup();
+
+
         mymap.addLayer(markersLayer);
 
         var controlSearch = new L.Control.Search({
