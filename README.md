@@ -113,6 +113,8 @@ $.ajax({
 
 ## Deploying on Digital Ocean
 
+Most of my projects are deployed with Heroku, but for this project I wanted to change things up and learn about deployment on another platform. For deploying on a DigitalOcean droplet, I used 
+
 Here's an overview of how to deploy this app to Ditial Ocean.
 
 - Create a Droplet with Ubunutu 14.04

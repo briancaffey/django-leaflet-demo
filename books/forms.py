@@ -38,9 +38,6 @@ class QueryForm(forms.Form):
                 'placeholder':'space-separated words matching title, synopsis, website or tags'
             }))
 
-    # status = forms.BooleanField(
-    #     required=False)
-
 
 
 

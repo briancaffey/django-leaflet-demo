@@ -7,8 +7,8 @@ def distance(origin, destination):
     on the earth (specified in decimal degrees)
     """
 
-    lat1, lon1 = origin
-    lat2, lon2 = destination
+    lon1, lat1 = origin
+    lon2, lat2 = destination
     # convert decimal degrees to radians 
     lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
 
@@ -19,3 +19,8 @@ def distance(origin, destination):
     c = 2 * asin(sqrt(a)) 
     r = 3956 # Radius of earth in kilometers. Use 3956 for miles
     return c * r
+
+    # philly  39.9526° N, 75.1652° 
+    # DC 38.9072° N, 77.0369° W
+
+    # 139 miles  223.699 km

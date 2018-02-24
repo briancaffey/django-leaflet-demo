@@ -45,11 +45,15 @@ crossorigin=""></script>
     <div class="row">
         <div class="col-md-8">
             
-            {{ map_book }}
+            <!-- {{ map_book }} -->
             <br/>
-            Info
+            <h1>Other Books Nearby</h1>
             {% for b in sorted_nearby %}
-                {{ b }}
+                <h4>
+                    <a href="{{ b.1.get_absolute_url }}">
+                    {{ b.1.1.1 }} 
+                    </a><small>{{ b.1.0 | floatformat:2 }} miles away</small>
+                </h4>
             {% endfor %}
         </div>
         <div  class="col-md-4">

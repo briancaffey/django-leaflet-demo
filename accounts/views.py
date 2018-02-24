@@ -21,7 +21,8 @@ def login_view(request):
 		password = form.cleaned_data.get('password')
 		user = authenticate(username=username, password=password)
 		login(request, user)
-		if next_redirect != '':
+		print(next_redirect)
+		if next_redirect != 'None':
 			return redirect(next_redirect)
 		return redirect('books:all')
 	context = {'form':form, 'next':next_redirect}

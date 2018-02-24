@@ -14,8 +14,6 @@ from .models import Book
 from .utils.filter import filter_books
 from .utils.nearby import distance
 
-
-
 import csv
 import datetime
 import json
@@ -100,25 +98,16 @@ def export_filtered_books_xls(request):
 def book_detail(request, id, slug):
 
     book = Book.objects.get(id=id, slug=slug)
-
-    b_coords = (book.lon, book.lat)
-
+    b_coords = (book.lat, book.lon)
     all_books = Book.objects.all()
-    
     coords = [((b.lat, b.lon),b) for b in all_books]
 
     distance_dict = {}
     for c in coords:
+        if c[0] != b_coords:
+            distance_dict[c[0]]=(distance(c[0],b_coords),c)
 
-        distance_dict[c[0]]=(distance(c[0],b_coords),c)
-
-    
-
-    sorted_nearby = sorted(distance_dict.items(), key=operator.itemgetter(1), reverse=False)[2]
-
-    
-    
-    # f = itemgetter(2), the call f(r) returns r[2]
+    sorted_nearby = sorted(distance_dict.items(), key=lambda x: x[1][0])[:5]
 
     map_book = [{'loc':[float(book.lon), float(book.lat)], 
                  'title':book.title, 
@@ -154,9 +143,6 @@ def new_book(request):
             book.save()
             return redirect('books:all')
     return render(request, 'books/new.html', {'form':form})
-
-
-
 
 def viz(request):
     x= [1,3,5,7,9,11,13]
