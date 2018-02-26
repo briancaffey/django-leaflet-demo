@@ -37,22 +37,17 @@ crossorigin=""></script>
         </div>
         <div class="col-md-8">
                 <h1>{{ book.title }}<small size=".5em" style="color:black">  {{ book.pages }} pages</small></h1>
-                <h3>Authors: {% for author in book.authors.all %}<a href="{% url 'authors:author_detail' id=author.id %}">{{ author.full_name }}</a>{% endfor %}</h3>
+                <h3>Authors: {% for author in book.authors.all %}<a href="{% url 'authors:author_detail' id=author.id %}">{{ author.full_name }}</a>{% if forloop.last %}{% else %}, {% endif %}{% endfor %}</h3>
                 <p>{{ book.synopsis | safe | linebreaks }}</p>
         </div>
     </div>
     <hr>
     <div class="row">
         <div class="col-md-8">
-            
-            <!-- {{ map_book }} -->
-            <br/>
             <h1>Other Books Nearby</h1>
             {% for b in sorted_nearby %}
                 <h4>
-                    <a href="{{ b.1.get_absolute_url }}">
-                    {{ b.1.1.1 }} 
-                    </a><small>{{ b.1.0 | floatformat:2 }} miles away</small>
+                    <a href="{{ b.1.get_absolute_url }}">{{ b.1.1.1 }}</a> <small>{{ b.1.0 | floatformat:2 }} miles away</small>
                 </h4>
             {% endfor %}
         </div>

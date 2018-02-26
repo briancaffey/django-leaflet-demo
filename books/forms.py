@@ -113,6 +113,19 @@ class BookForm(forms.ModelForm):
         )
     )
 
+    author = forms.CharField(
+        label="", 
+        widget=forms.TextInput(
+            attrs={
+                'class':'form-control',
+                'id':'id_author',
+                'placeholder':"author",
+                'type':'text',
+                'name':'author'
+            }
+        )
+    )
+
     class Meta:
         model = Book
         fields = [

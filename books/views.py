@@ -1,3 +1,5 @@
+from authors.models import Author
+
 from bokeh.plotting import figure, output_file, show 
 from bokeh.embed import components
 
@@ -133,6 +135,8 @@ def new_book(request):
             publish_date = form.cleaned_data['publish_date']
             pages = form.cleaned_data['pages']
             synopsis = form.cleaned_data['synopsis']
+            authors = request.POST.getlist('author')
+            print(authors)
             book = Book(
                 title=title, 
                 lon=lon, 
@@ -140,6 +144,16 @@ def new_book(request):
                 synopsis=synopsis, 
                 pages=pages, 
                 publish_date=publish_date)
+            book.save()
+            for author in authors:
+                if len(author.split()) > 1:
+                    first_name = "".join(author.split()[:-1])
+                    last_name = author.split()[-1]
+                    a, created = Author.objects.get_or_create(
+                        first_name=first_name, 
+                        last_name=last_name,
+                    )
+                    book.authors.add(a)
             book.save()
             return redirect('books:all')
     return render(request, 'books/new.html', {'form':form})

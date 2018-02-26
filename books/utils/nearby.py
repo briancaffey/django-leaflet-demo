@@ -1,6 +1,5 @@
 from math import radians, cos, sin, asin, sqrt
 
-
 def distance(origin, destination):
     """
     Calculate the great circle distance between two points 

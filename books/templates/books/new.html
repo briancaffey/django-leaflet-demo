@@ -25,6 +25,10 @@ crossorigin=""></script>
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
 
+<!-- jQuery UI -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" />
+
 {% endblock head_extra %}
 
 {% block content %}
@@ -48,10 +52,11 @@ crossorigin=""></script>
             </div>
         </div>
         
-        
+        <hr>
         {{ form.synopsis }}
+        <hr>
         {{ form.pages }}
-
+        <hr>
         <div class="row">
             <div class="col-md-6">
                 {{ form.lon }}
@@ -62,6 +67,55 @@ crossorigin=""></script>
         </div>
 
         <div id="mapid"></div>
+        <hr>
+        <div class="row" id="authors">
+            <div class="col-md-8">
+                {{ form.author }}
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-warning add-author" id="add-author">Add another author</a>
+            </div>
+        </div>
+
+        <script>
+
+            $(document.body).on('click', '.remove-author', function(){
+                console.log('removing author')
+                $(this).parent().prev().remove()
+                $(this).parent().remove()
+                
+            })
+
+            $(document.body).on('keydown.autocomplete', '.add-author-input', function(){
+                $(this).autocomplete({
+                    source: "/authors/search_authors/",
+                    minLength: 2,
+                })
+            })
+
+            $(document.body).on('click', '.add-author', function(){
+                console.log('adding button')
+                $(this).parent().after(
+                    "<div class='col-md-8'> \
+                        <input class='form-control add-author-input' name='author' placeholder='add another author'/>\
+                    </div> \
+                    <div class='col-md-4'> \
+                        <a class='btn btn-default remove-author'>❌</a>\
+                        <a class='btn btn-warning add-author' id='add-another'>Add another</a> \
+                    </div>"
+                )
+            })
+
+
+            $(function() {
+                $("#id_author").autocomplete({
+                    source: "/authors/search_authors/",
+                    minLength: 2,
+                });
+            });
+            
+        
+        </script>
         
         <script>
         var mymap = new L.Map('mapid', {zoom: 2, center: new L.latLng([40,13]) });	//set center from first location
@@ -126,6 +180,7 @@ crossorigin=""></script>
 
         <input type="submit" class="btn btn-success" value="Add Book"/>
     </form>
+    <br />
 </div>
 
 <script>
