@@ -117,7 +117,7 @@ class BookForm(forms.ModelForm):
         label="", 
         widget=forms.TextInput(
             attrs={
-                'class':'form-control',
+                'class':'form-control add-author-input',
                 'id':'id_author',
                 'placeholder':"author",
                 'type':'text',
